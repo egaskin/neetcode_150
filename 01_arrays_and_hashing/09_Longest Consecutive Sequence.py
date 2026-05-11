@@ -1,6 +1,6 @@
 from typing import List, Dict
 
-class Solution_dict: # O(n^2) time complexity is list concatenation vs O(n) for append. why?
+class Solution: # O(n^2) time complexity is list concatenation vs O(n) for append. why?
     def longestConsecutive(self, nums: List[int]) -> int:
         nums_dict: Dict[int, List[int]] = {nums[i]:[int()] for i in range(len(nums))} 
         starts = self.identify_starts(nums_dict)

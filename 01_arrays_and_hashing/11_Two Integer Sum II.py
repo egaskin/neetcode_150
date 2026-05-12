@@ -25,9 +25,9 @@ class Solution:
         L = 0
         R = len(A) - 1
         candidate_sum = A[L] + A[R]
-        while candidate_sum != T and L != R:
-            print(f"A[L]=A[{L}]={A[L]}, A[R]=A[{R}]={A[R]}, A[L] + A[R] = {A[L] + A[R]}, A[L:R+1] = A[L:R+1]")
-            print(f"\tlen(A[L:R+1]) = {len(A[L:R+1])}")
+        while candidate_sum != T and L < R:
+            # print(f"A[L]=A[{L}]={A[L]}, A[R]=A[{R}]={A[R]}, A[L] + A[R] = {A[L] + A[R]}, A[L:R+1] = A[L:R+1]")
+            # print(f"\tlen(A[L:R+1]) = {len(A[L:R+1])}")
             # if the largest number plus smallest number is bigger than target, then
             # sum cant use largest number. since all other numbers will be bigger than smallest
             if candidate_sum > T:
@@ -36,9 +36,13 @@ class Solution:
                 L = L + 1 # similar logic. smallest number cant be in any pair
 
             candidate_sum = A[L] + A[R]
-        print("FINAL:")
-        print(f"A[L]=A[{L}]={A[L]}, A[R]=A[{R}]={A[R]}, A[L] + A[R] = {A[L] + A[R]}")
-        print(f"\tlen(A[L:R]) = {len(A[L:R+1])}")
+        # print("FINAL:")
+        # print(f"A[L]=A[{L}]={A[L]}, A[R]=A[{R}]={A[R]}, A[L] + A[R] = {A[L] + A[R]}")
+        # print(f"\tlen(A[L:R]) = {len(A[L:R+1])}")
+
+        if candidate_sum != T:
+            # handle cases where no target is found in the array
+            return None # type: ignore
         return [L + 1, R + 1]
 
     def binarySearch(self, A: List[int], T: int) -> int:
@@ -85,6 +89,8 @@ class Solution_BruteForce:
             for j in range(i+1, len(numbers)):
                 if numbers[i] + numbers[j] == target:
                     return [i+1, j+1]
+                
+        return None # type: ignore
 
 if __name__ == "__main__":
     # numbers=[-5,-3,0,2,4,6,8]

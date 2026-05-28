@@ -1,4 +1,7 @@
 class Solution_SlidingWindow:
+    """
+    Solution is based on neetcode's solution.
+    """
     def lengthOfLongestSubstring(self, s: str) -> int:
         
         l = 0
@@ -12,7 +15,7 @@ class Solution_SlidingWindow:
                 char_set.remove(s[l])
                 l += 1
 
-            # always add s[r]. this may replace s[l] if s[l] = s[r]
+            # always add s[r]. this may replace s[l] if s[l] = s[r] (in which case s[l] was removed in the previous if statement)
             char_set.add(s[r])
 
             if max_window_size < r - l + 1:

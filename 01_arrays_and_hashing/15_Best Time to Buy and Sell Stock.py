@@ -50,4 +50,4 @@ class Solution_BruteForce:
     
 if __name__ == "__main__":
     prices=[7,1,5,3,6,4]
-    Solution_BruteForce().maxProfit(prices)
+    Solution().maxProfit(prices)

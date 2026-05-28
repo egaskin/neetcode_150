@@ -2,7 +2,7 @@
 - should i spend more time on the basics before doing the 150?
 - "How to use NeetCode Effectively (How to prepare for coding interviews)": https://neetcode.io/courses/lessons/how-to-use-neetcode-effectively
 1. read problem statement
-2. create test cases - SPEND MORE TIME HERE - compare to neetcode/leetcode test cases
+2. create test cases, RUN ON PAPER PERHAPS WITH ITERATION TABLE - SPEND MORE TIME HERE - compare to neetcode/leetcode test cases
 3. top down psuedo code, with clearly defined inputs/outputs
 4. analyze time and space complexity before implementation
 5. write code

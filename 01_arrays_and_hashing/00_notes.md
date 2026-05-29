@@ -15,7 +15,8 @@
 - 11 # time complexity analysis was weak (application of two pointer algorithm)
 - 12 # i did it two ways. the first was less modular, using hash tables. the second was modular using an edited TwoSum algorithm from problem 11.
 - 13
-- 14 # dynamic programming and two pointers required??? WATCH SOLUTION
+- 14
+- 16
 
 # really liked
 - 04

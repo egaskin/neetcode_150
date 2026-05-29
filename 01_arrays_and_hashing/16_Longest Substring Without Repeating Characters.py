@@ -1,6 +1,7 @@
 class Solution_SlidingWindow:
     """
     Solution is based on neetcode's solution.
+
     """
     def lengthOfLongestSubstring(self, s: str) -> int:
         
@@ -8,11 +9,12 @@ class Solution_SlidingWindow:
         r = 1
         char_set = set(s[l])
         max_window_size = 0
-        max_window_indices = (0, 1)
+        max_window_indices = (0, 0)
         for r in range(1, len(s)):
-            print(f"\t IN LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}, s[l] = {s[l]}, s[r] = {s[r]}")
-            if s[r] in char_set: # we can remove s[l] from set and increment l
-                char_set.remove(s[l])
+            print(f"\t START OF LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}, s[l] = {s[l]}, s[r] = {s[r]}")
+            while s[r] in char_set: # we can remove s[l] from set and increment l
+                print(f"\t\twhile loop: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}, s[l] = {s[l]}, s[r] = {s[r]}")
+                char_set.remove(s[l]) # s[r] MUST EQUAL s[l]
                 l += 1
 
             # always add s[r]. this may replace s[l] if s[l] = s[r] (in which case s[l] was removed in the previous if statement)
@@ -21,7 +23,44 @@ class Solution_SlidingWindow:
             if max_window_size < r - l + 1:
                 max_window_size = r - l + 1
                 max_window_indices = (l, r)
-        print(f"\t END LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}")
+            print(f"\t END OF LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}, s[l] = {s[l]}, s[r] = {s[r]}\n")
+        print(f"\t AFTER LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}")
+        print(f"best substring: {s[max_window_indices[0]:max_window_indices[1]+1]}")
+        return len(s[max_window_indices[0]:max_window_indices[1]+1])
+
+
+
+class Solution_SlidingWindow_BAD:
+    """
+    Solution is based on neetcode's solution.
+
+    s = "zxyyqwert"
+
+    breaks the solution. we need to do a while loop that keeps 
+    incrementing s[l] until s[r] isn't in the set
+
+    """
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        
+        l = 0
+        r = 1
+        char_set = set(s[l])
+        max_window_size = 0
+        max_window_indices = (0, 0)
+        for r in range(1, len(s)):
+            print(f"\t START OF LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}, s[l] = {s[l]}, s[r] = {s[r]}")
+            if s[r] in char_set: # we can remove s[l] from set and increment l
+                char_set.remove(s[l]) # BAD: s[r] may not EQUAL s[l]
+                l += 1
+
+            # always add s[r]. this may replace s[l] if s[l] = s[r] (in which case s[l] was removed in the previous if statement)
+            char_set.add(s[r])
+
+            if max_window_size < r - l + 1:
+                max_window_size = r - l + 1
+                max_window_indices = (l, r)
+            print(f"\t END OF LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}, s[l] = {s[l]}, s[r] = {s[r]}\n")
+        print(f"\t AFTER LOOP: l = {l}, r = {r}, char_set = {char_set}, max_window_size = {max_window_size}")
         print(f"best substring: {s[max_window_indices[0]:max_window_indices[1]+1]}")
         return len(s[max_window_indices[0]:max_window_indices[1]+1])
 
@@ -66,8 +105,10 @@ class Solution_BruteForceKinda:
         return len(best_substring)
 if __name__ == "__main__":
     # s = "x"
-    s = "zxyzxyz"
+    # s = "zxyzxyz"
     # s = "xxxx"
+    s = "zxyyqwert" # breaks Solution_SlidingWindow_BAD()
     print(f"s = {s}")
     # Solution_BruteForceKinda().lengthOfLongestSubstring(s)
+    # Solution_SlidingWindow_BAD().lengthOfLongestSubstring(s)
     Solution_SlidingWindow().lengthOfLongestSubstring(s)

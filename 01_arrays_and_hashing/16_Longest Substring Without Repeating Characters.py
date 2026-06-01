@@ -1,3 +1,13 @@
+class Solution_SuffixTree:
+    """
+    a suffix tree can easily answer this question. but you gotta build one.
+
+    doesn't that mean a suffix array (which is more space efficient) can too?
+    """
+
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        pass
+
 class Solution_SlidingWindow:
     """
     Solution is based on neetcode's solution.
